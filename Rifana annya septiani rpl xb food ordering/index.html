@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food ordering</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Food ordering App</h1>
+        <form id="orderForm">
+          <div>
+             <label for="Food">Choose a food</label>
+             <select id="food">
+                <option value="0">---Select Food---</option>
+                <option value="0">Burger - $50</option>
+                <option value="0">Pizza - $80</option>
+                <option value="0">Sandwich - $30</option>
+             </select>
+          </div>
+          <div>
+            <label for="drink">Choose a drink</label>
+            <select id="drink">
+                <option value="0">---Select Drink---</option>
+                <option value="0">Soda - $20</option>
+                <option value="0">Juice - $25</option>
+                <option value="0">Water - $10</option>
+            </select>
+          </div>
+          <button type="button" id="orderButton">Order Now</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        document.getElementById("orderButton").onclick = function(){
+          const foodPrice = parseInt(document.getElementById("food").value);
+           const drinkPrice = parseInt(document.getElementById("drink").value);
+
+           let totalPrice = foodPrice + drinkPrice;
+           let discount = 0;
+
+           if (totalPrice > 100) {
+            discount = totalPrice * 0.1;
+            totalPrice -= discount; // totalPrice = totalPrice - discount
+           }
+           const resultDiv = document.getElementById("result");
+
+           if (totalPrice > 0) {
+                resultDiv.innerHTML = `
+                   total: $${totalPrice}<br>
+                   discount : $${discount.toFixed(2)}<br>
+                   Final Price : $${totalPrice.toFixed(2)}`;}
+               
+            else {
+             resultDiv.innerHTML = "Plese select food and drink"
+           }
+        }
+    </script>
+</body>
+</html>
